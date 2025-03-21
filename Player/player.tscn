@@ -1,7 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bj7sdievsjag7"]
+[gd_scene load_steps=15 format=3 uid="uid://bj7sdievsjag7"]
 
 [ext_resource type="Texture2D" uid="uid://4tis3y3kpa33" path="res://Player/Sprites/ExamplePlayerSprite.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://b6gkgoa6uxfp5" path="res://Player/Scripts/player.gd" id="1_4ntmi"]
+[ext_resource type="Script" uid="uid://b8smbsxbwspij" path="res://Player/Scripts/player_state_machine.gd" id="3_btcbx"]
+[ext_resource type="Script" uid="uid://331x2yyevfrs" path="res://Player/Scripts/state_idle.gd" id="4_gwnis"]
+[ext_resource type="Script" uid="uid://cjiid5qh4ipfe" path="res://Player/Scripts/state_walk.gd" id="5_k53q1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_edjgo"]
 
@@ -148,3 +151,12 @@ root_node = NodePath("../CollisionShape2D")
 libraries = {
 &"": SubResource("AnimationLibrary_btcbx")
 }
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_btcbx")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_gwnis")
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource("5_k53q1")
